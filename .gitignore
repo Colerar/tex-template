@@ -1,0 +1,31 @@
+### Editors ###
+/.idea
+/.vscode
+
+### macOS ###
+.DS_Store
+
+### LaTex Build ###
+*.dvi
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ind
+*.lof
+*.lot
+*.out
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.fls
+*.log
+*.ltjruby
+*.synctex.gz
+*.fdb_latexm

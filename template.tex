@@ -1,0 +1,170 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[
+  fontset = none,
+  punct   = kaiming,
+]{ctexart}
+\usepackage{fancyhdr}
+\usepackage{luatexja-ruby}
+\usepackage[
+  margin=1in,
+  headheight=14pt,
+]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[
+  colorlinks,
+  linkcolor = BrickRed,
+  citecolor = Green,
+  filecolor = Mulberry,
+  urlcolor  = NavyBlue,
+  menucolor = BrickRed,
+  runcolor  = Mulberry,
+]{hyperref}
+
+\usepackage{footnotebackref}
+\usepackage{pifont}
+\usepackage{graphicx}
+
+\graphicspath{{Images/}}
+\bibliographystyle{plain}
+
+% 字体
+\setmainfont{SF Pro Text}
+\setsansfont{SF Pro Text}
+\setCJKmainfont{Hiragino Sans GB}[
+  ItalicFont = STKaiti,
+]
+\setCJKsansfont{Hiragino Sans GB}[
+  ItalicFont = STKaiti,
+]
+\setCJKmonofont{Hiragino Sans GB}
+\newcommand{\emoji}[1]{
+  {\setmainfont{Apple Color Emoji}[Renderer=Harfbuzz]{#1}}
+}
+
+\newCJKfontfamily\song{Songti SC Light}[
+  BoldFont   = Songti SC Bold,
+  ItalicFont = STKaiti,
+]
+\newCJKfontfamily\sans{Hiragino Sans GB}
+\newCJKfontfamily\gothic{Hiragino Sans}
+\newCJKfontfamily\mincho{Hiragino Mincho ProN}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+\renewcommand\thefootnote{
+  \textcolor{black}\ding{\numexpr171+\value{footnote}}
+}
+
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+
+\author{Colerar}
+\date{\today}
+\title{Lua\LaTeX{}通用模板}
+
+\pagestyle{headings}
+
+% CTex 设置
+\ctexset{
+  section={
+    name={第,节},
+    number=\arabic{section},
+  }
+}
+
+% 页眉
+\fancyhf{}
+\lhead{\textnormal{\rightmark}}
+\rhead{--\ \thepage\ --}
+\pagestyle{fancy}
+\renewcommand\sectionmark[1]{%
+  \markright{\CTEXifname{\CTEXthesection——}{}#1}}
+
+
+% 页脚
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+% 标题
+\maketitle
+
+% 目录
+{
+  \hypersetup{linkcolor=black}
+  \tableofcontents
+}
+
+\newpage
+\sans
+\section{汉语}
+
+汉语，日韩称中国语，书写又可称汉文、中文、华文、唐文，语言又称“华语”、唐话、中国话等，
+汉语是联合国官方语言之一，属汉藏语系的分析语，具有声调。汉语的文字系统——
+汉字是一种意音文字，表意的同时也具一定的表音功能。汉语包含书面语以及口语两部分，
+古代书面汉语称为文言文，现代书面汉语一般指使用现代标准汉语语法、词汇的中文通行文体
+（又称白话文）。目前全球有六分之一人口使用汉语作为母语。汉语口语主要分为官话、吴语、
+闽语、粤语、湘语、客家语和赣语等七种；它们的语言学归属在西方语言学界存在争议，
+或被认为是独立的语言，或被认为是汉语方言。
+
+
+\newpage
+\section[日本語]{\gothic 日本語 }
+
+\mincho
+
+\emph{\ltjruby{日本|語}{にほん|ご}}は、主に日本国内や日本人同士の間で使われている
+言語である。日本は法令によって公用語を規定していないが、法令その他の公用文は全て
+日本語で記述され、各種法令において日本語を用いることが定められ、学校教育においては
+「国語」として教えられるなど、事実上、唯一の公用語となっている。
+
+
+\newpage
+\sans
+\section{汉字}
+
+\emph{汉字}，在中国亦称中文字、国字、唐字、方块字，是汉字文化圈广泛使用的一种文字，
+是世界上独有的一种指示会意文字体系，也是世界上唯一仍被广泛使用并高度发展的语素文字，
+为中国上古时代的华夏族人所发明创制，其字体也历经过长久改进及演变。目前确切历史，
+可追溯至约公元前1300年商朝的甲骨文、籀文、金文，再到春秋战国与秦朝的籀文、小篆，
+发展至汉朝隶变，产生隶书、草书以及楷书\footnote{以及派生的行书}，至唐代楷化为今日所用的
+手写字体标准——正楷，也是今日普遍使用的现代汉字。汉字在古文中只称“字”，少数民族为区别
+而称“汉字”，指汉人使用的文字，后者称法在近代才开始通用。
+
+\newpage
+\gothic
+\section{仮名} \label{sec:kana}
+
+\emph{\ltjruby{仮名}{かな}}とは、漢字をもとにして日本で作られた文字のこと。
+現在一般には平仮名と片仮名のことを指す。表音文字の一種であり、基本的に1字が1音節を
+あらわす音節文字に分類される。漢字に対して\ltjruby{和字}{わじ}ともいう。ただし和字は和製漢字を
+意味することもある。
+
+\newpage
+\sans
+\section{章节}
+
+\subsection{子节}
+\subsection{子节}
+\subsubsection{子子节}
+
+\paragraph{段落} 这是一个段落。
+\subparagraph{子段落} 这是一个子段落。
+
+
+\newpage
+\section{其他}
+
+\sans
+
+\begin{description}
+  \item[链接] \url{https://www.example.com}
+  \item[跳转链接]
+    \hyperref[sec:kana]{点我跳转至{\gothic{}仮名}}
+  \item[表情符号] \emoji{😶‍🌫️😂👍👪}
+  \item[参考文献] Lorem ipsum \ldots \upcite{greenwade93}
+\end{description}
+
+\bibliography{ref}
+
+\end{document}
