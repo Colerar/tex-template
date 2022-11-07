@@ -5,8 +5,10 @@
   fontset = none,
   punct   = kaiming,
 ]{ctexart}
+\usepackage{fontspec}
 \usepackage{fancyhdr}
 \usepackage{luatexja-ruby}
+\usepackage{minted}
 \usepackage[
   margin=1in,
   headheight=14pt,
@@ -29,6 +31,19 @@
 \graphicspath{{Images/}}
 \bibliographystyle{plain}
 
+% 代码块
+\renewcommand{\theFancyVerbLine}{%
+  \ttfamily {%
+    \oldstylenums{\arabic{FancyVerbLine}}
+  }
+}
+\setminted{
+  mathescape,
+  linenos,
+  frame    = lines,
+  framesep = 2mm,
+}
+
 % 字体
 \setmainfont{SF Pro Text}
 \setsansfont{SF Pro Text}
@@ -47,6 +62,15 @@
   BoldFont   = Songti SC Bold,
   ItalicFont = STKaiti,
 ]
+
+\setmonofont[
+  ItalicFont     = JetBrains Mono Italic,
+  BoldFont       = JetBrains Mono Bold,
+  BoldItalicFont = JetBrains Mono Bold Italic,
+  Contextuals    = Alternate,
+]{JetBrains Mono}
+
+\newfontfamily\lmmono{Latin Modern Mono}
 \newCJKfontfamily\sans{Hiragino Sans GB}
 \newCJKfontfamily\gothic{Hiragino Sans}
 \newCJKfontfamily\mincho{Hiragino Mincho ProN}
@@ -54,6 +78,12 @@
 \renewcommand{\emph}[1]{\textbf{#1}}
 \renewcommand\thefootnote{
   \textcolor{black}\ding{\numexpr171+\value{footnote}}
+}
+
+\urlstyle{same}
+\let\oldurl\url
+\renewcommand{\url}[1]{%
+{\lmmono\oldurl{#1}}
 }
 
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
@@ -151,6 +181,36 @@
 \paragraph{段落} 这是一个段落。
 \subparagraph{子段落} 这是一个子段落。
 
+\newpage
+\section{代码块}
+
+\begin{minted}{haskell}
+import Control.Monad.State
+fib n = flip evalState (0, 1) $ do
+  forM [0..(n - 1)] $ \_ -> do
+    (a, b) <- get
+    put (b, a + b)
+  (a, b) <- get
+  return a
+\end{minted}
+
+下方代码块被高亮了：
+
+\begin{minted}[
+  highlightlines={6-9}
+]{kotlin}
+suspend fun main(args: Array<String>) {
+  when (val result = SorapointaMain().main(args)) {
+      is CommandResult.Success -> {
+          exitProcess(0)
+      }
+      is CommandResult.Error -> {
+          println(result.userMessage)
+          exitProcess(1)
+      }
+  }
+}
+\end{minted}
 
 \newpage
 \section{其他}

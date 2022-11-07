@@ -6,6 +6,7 @@
 .DS_Store
 
 ### LaTex Build ###
+_minted-template
 *.dvi
 *.pdf
 *.aux
