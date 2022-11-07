@@ -1,8 +1,8 @@
 # tex-template
 
-本人使用的 $\text{Lua\LaTeX}$ 通用模板。
+本人使用的 $\LaTeX$ 通用模板。
 
-本模板为 CJK 混排目的配置，依赖 $\text{Lua\LaTeX}$、$\text{Lua\TeX-ja}$、$\text{C\TeX}$ 等宏包。
+本模板为 CJK 混排目的配置，依赖 `LuaLaTeX`、`LuaTeX-ja`、`CTeX` 等宏包。
 
 具有以下特性：
 
