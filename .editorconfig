@@ -3,6 +3,6 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 
-[*.tex]
+[*.{tex,bib}]
 indent_style = space
 tab_width = 2

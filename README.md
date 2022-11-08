@@ -21,7 +21,7 @@
 
 本模板并不意图用于数学环境，不保证数学环境开箱即用。
 
-本模板编译需要经过 `lualatex -> bibtex -> lualatex -> lualatex` 工作流，请注意配置。
+本模板编译需要经过 `lualatex -> biber -> lualatex -> lualatex` 工作流，请注意配置。
 
 ## 安装前置依赖
 

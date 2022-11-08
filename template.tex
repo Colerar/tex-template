@@ -23,13 +23,20 @@
   menucolor = BrickRed,
   runcolor  = Mulberry,
 ]{hyperref}
-
+\usepackage[
+  backend  = biber,
+  style    = caspervector,
+  utf8,
+  backref,
+]{biblatex}
 \usepackage{footnotebackref}
 \usepackage{pifont}
 \usepackage{graphicx}
 
 \graphicspath{{Images/}}
-\bibliographystyle{plain}
+
+% 参考文献
+\addbibresource{ref.bib}
 
 % 代码块
 \renewcommand{\theFancyVerbLine}{%
@@ -80,13 +87,12 @@
   \textcolor{black}\ding{\numexpr171+\value{footnote}}
 }
 
+% 链接样式
 \urlstyle{same}
 \let\oldurl\url
 \renewcommand{\url}[1]{%
 {\lmmono\oldurl{#1}}
 }
-
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 \author{Colerar}
 \date{\today}
@@ -212,6 +218,30 @@ suspend fun main(args: Array<String>) {
 }
 \end{minted}
 
+
+\newpage
+\section{图片}
+
+图 \ref{fig:example} 来自 Pexels，为版权\copyright{}作品，不按照本项目授权分发。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.2]{pexels-1509534.jpg}
+  \caption{取自 Pexels \url{https://www.pexels.com/photo/1509534/}}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.2]{pexels-1509534.jpg}
+\includegraphics[scale=0.2]{pexels-1509534.jpg}
+\\[\smallskipamount]
+\includegraphics[scale=0.2]{pexels-1509534.jpg}
+\includegraphics[scale=0.2]{pexels-1509534.jpg}
+\caption{多个图像并排}
+\end{figure}
+
+
 \newpage
 \section{其他}
 
@@ -219,12 +249,15 @@ suspend fun main(args: Array<String>) {
 
 \begin{description}
   \item[链接] \url{https://www.example.com}
+  \item[带描述的链接] \href{CTAN}{https://www.ctan.org}
   \item[跳转链接]
     \hyperref[sec:kana]{点我跳转至{\gothic{}仮名}}
   \item[表情符号] \emoji{😶‍🌫️😂👍👪}
-  \item[参考文献] Lorem ipsum \ldots \upcite{greenwade93}
+  \item[参考文献] Lorem ipsum \ldots \autocite{greenwade93}
+  \item[中文参考文献] 复活币的锻造方法。 \autocite{bili_lex}
 \end{description}
 
-\bibliography{ref}
+% 参考文献
+\printbibliography[heading=bibintoc]
 
 \end{document}

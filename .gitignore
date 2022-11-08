@@ -28,5 +28,8 @@ _minted-template
 *.fls
 *.log
 *.ltjruby
+*.bcf
+*.pyg
+*.run.xml
 *.synctex.gz
 *.fdb_latexm
