@@ -26,14 +26,22 @@
 \usepackage[
   backend  = biber,
   style    = caspervector,
+  seconds,
   utf8,
   backref,
 ]{biblatex}
+\usepackage[
+  perpage,
+  hang,
+  flushmargin,
+]{footmisc}
 \usepackage{footnotebackref}
 \usepackage{pifont}
 \usepackage{graphicx}
 
 \graphicspath{{Images/}}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
 
 % 参考文献
 \addbibresource{ref.bib}
@@ -52,8 +60,12 @@
 }
 
 % 字体
-\setmainfont{SF Pro Text}
-\setsansfont{SF Pro Text}
+\setmainfont{SF Pro Text}[
+  ItalicFont = New York Small Regular Italic
+]
+\setsansfont{SF Pro Text}[
+  ItalicFont = New York Small Regular Italic
+]
 \setCJKmainfont{Hiragino Sans GB}[
   ItalicFont = STKaiti,
 ]
@@ -82,11 +94,6 @@
 \newCJKfontfamily\gothic{Hiragino Sans}
 \newCJKfontfamily\mincho{Hiragino Mincho ProN}
 
-\renewcommand{\emph}[1]{\textbf{#1}}
-\renewcommand\thefootnote{
-  \textcolor{black}\ding{\numexpr171+\value{footnote}}
-}
-
 % 链接样式
 \urlstyle{same}
 \let\oldurl\url
@@ -94,11 +101,23 @@
 {\lmmono\oldurl{#1}}
 }
 
-\author{Colerar}
-\date{\today}
-\title{Lua\LaTeX{}通用模板}
+% Footnote
+%% Circled num
+\renewcommand\thefootnote{
+  \textcolor{black}\ding{\numexpr171+\value{footnote}}
+}
 
-\pagestyle{headings}
+%% Backref
+\makeatletter
+\LetLtxMacro{\BHFN@Old@footnotemark}{\@footnotemark}
+
+\renewcommand*{\@footnotemark}{%
+    \refstepcounter{BackrefHyperFootnoteCounter}%
+    \xdef\BackrefFootnoteTag{bhfn:\theBackrefHyperFootnoteCounter}%
+    \label{\BackrefFootnoteTag}%
+    \BHFN@Old@footnotemark
+}
+\makeatother
 
 % CTex 设置
 \ctexset{
@@ -119,6 +138,10 @@
 
 % 页脚
 \fancyfoot[C]{\thepage}
+
+\author{Colerar}
+\date{\today}
+\title{Lua\LaTeX{}通用模板}
 
 \begin{document}
 
@@ -249,12 +272,19 @@ suspend fun main(args: Array<String>) {
 
 \begin{description}
   \item[链接] \url{https://www.example.com}
-  \item[带描述的链接] \href{CTAN}{https://www.ctan.org}
+  \item[带描述的链接] \href{https://www.ctan.org}{CTAN}
   \item[跳转链接]
     \hyperref[sec:kana]{点我跳转至{\gothic{}仮名}}
   \item[表情符号] \emoji{😶‍🌫️😂👍👪}
   \item[参考文献] Lorem ipsum \ldots \autocite{greenwade93}
   \item[中文参考文献] 复活币的锻造方法。 \autocite{bili_lex}
+  \item[脚注中的链接\footnotemark] 参见下方
+  \footnotetext{\href{https://example.org}{示例}}
+  \item[脚注中的多行文本\footnotemark] 参见下方
+  \footnotetext{%
+    多行文本也能够轻易对齐。\\
+    这个功能使用 \texttt{footmisc} 宏包。
+  }
 \end{description}
 
 % 参考文献
