@@ -25,7 +25,7 @@
 
 ## 安装前置依赖
 
-其他的都无需多说。安装正常流程安装 TeX Live，用 LuaLaTeX 安装即可。
+其他的都无需多说。按照正常流程安装 TeX Live，用 LuaLaTeX 安装即可。
 
 但若要使用代码功能，需要安装 Python 和 Pygments 包。Python 版本不限，只要能安装 Pygments 的即可，可至[官网](https://www.python.org/downloads/)或通过包管理器安装 Python。
 
